@@ -58,6 +58,7 @@ export default function Home() {
     }
   };
 
+
   const goHome = () => {
     sessionStorage.removeItem("sc_auth");
     setView("home");
@@ -70,7 +71,7 @@ export default function Home() {
       <div className="site-wrapper">
         {/* ── Video Background ── */}
         <div className="video-bg">
-          <video autoPlay muted loop playsInline className="video-el">
+          <video autoPlay muted loop playsInline className="video-el" ref={(el) => { if (el) { view === "pricing" ? el.pause() : el.play(); } }}>
             <source src="/lakebackground.mp4" type="video/mp4" />
           </video>
           <div className="color-overlay" />
@@ -106,6 +107,14 @@ export default function Home() {
                   </svg>
                   Member Access
                 </button>
+                <a
+                  className="btn-pill btn-outline"
+                  href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQEE5eXHTOS2T_Dp9zzQsRB7y6f6y3VZ-cNOx1DAAHtyo3OJXeGnedJAy4Xd5AkiuAQB37Vv-RDzr_q/pubhtml?gid=1992666344&single=true"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Pricing
+                </a>
                 <button
                   className="btn-pill btn-outline"
                   onClick={() => setView("contact")}
@@ -122,7 +131,7 @@ export default function Home() {
             </>
           )}
 
-          {view === "contact" && (
+{view === "contact" && (
             <div className="buttons">
               <a
                 href="https://wa.me/+19736386692"
