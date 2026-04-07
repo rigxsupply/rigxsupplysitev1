@@ -36,8 +36,8 @@ export default function MemberPage() {
       {/* ── Centered Content ── */}
       <main className="main">
         <Image
-          src="/Superclear-Logo.png"
-          alt="Superclear"
+          src="/logo4site.png"
+          alt="RIGxsupply"
           width={600}
           height={80}
           className="logo"
