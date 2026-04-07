@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 const MEMBER_PASSWORD = "levelup";
 
-type View = "home" | "gate" | "unlocking" | "member";
+type View = "home" | "gate" | "unlocking" | "member" | "contact";
 
 
 export default function Home() {
@@ -106,12 +106,12 @@ export default function Home() {
                   </svg>
                   Member Access
                 </button>
-                <a
-                  href="mailto:gosuperclear@proton.me"
+                <button
                   className="btn-pill btn-outline"
+                  onClick={() => setView("contact")}
                 >
                   Contact
-                </a>
+                </button>
               </div>
               <p className="subheader">Research for human optimization.</p>
               <p className="legal-text">
@@ -120,6 +120,45 @@ export default function Home() {
                 disease.
               </p>
             </>
+          )}
+
+          {view === "contact" && (
+            <div className="buttons">
+              <a
+                href="https://wa.me/+19736386692"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-pill btn-enter"
+              >
+                <svg className="enter-icon" viewBox="0 0 63.19 71.34" xmlns="http://www.w3.org/2000/svg" fill="white">
+                  <path d="M28.7,20.91c3.11-2.69,6.73-7.1,8.97-10.59,1.69-2.64,3.33-6.72,5.15-9.01,1.51-1.91,5.1-1.81,5.36.91.13,1.43-5.08,9.29-6.04,11.37-8.63,18.69,7.13,13.98,19.36,14.66,2.6,1,2.11,5.02-.68,5.45-4.29.66-10.52-.27-15.11,0-19.17,1.16-27.82,22.56-36.35,36.61-2.2,2.17-5.82.7-4.81-2.42,3.26-7.51,14.76-21.32,13.67-29.48-.88-6.64-10.98-4.15-15.47-4.69-3.68-.44-3.37-5.02-.7-5.51,2.84-.52,7.43.24,10.56,0,5.5-.44,11.97-3.71,16.11-7.29Z"/>
+                </svg>
+                WhatsApp
+              </a>
+              <a
+                href="https://discord.gg/AGDWSH2tB9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-pill btn-outline btn-enter"
+              >
+                <svg className="enter-icon" viewBox="0 0 63.19 71.34" xmlns="http://www.w3.org/2000/svg" fill="white">
+                  <path d="M28.7,20.91c3.11-2.69,6.73-7.1,8.97-10.59,1.69-2.64,3.33-6.72,5.15-9.01,1.51-1.91,5.1-1.81,5.36.91.13,1.43-5.08,9.29-6.04,11.37-8.63,18.69,7.13,13.98,19.36,14.66,2.6,1,2.11,5.02-.68,5.45-4.29.66-10.52-.27-15.11,0-19.17,1.16-27.82,22.56-36.35,36.61-2.2,2.17-5.82.7-4.81-2.42,3.26-7.51,14.76-21.32,13.67-29.48-.88-6.64-10.98-4.15-15.47-4.69-3.68-.44-3.37-5.02-.7-5.51,2.84-.52,7.43.24,10.56,0,5.5-.44,11.97-3.71,16.11-7.29Z"/>
+                </svg>
+                Discord
+              </a>
+              <a
+                href="mailto:rigxsupply@proton.me"
+                className="btn-pill btn-outline btn-enter"
+              >
+                <svg className="enter-icon" viewBox="0 0 63.19 71.34" xmlns="http://www.w3.org/2000/svg" fill="white">
+                  <path d="M28.7,20.91c3.11-2.69,6.73-7.1,8.97-10.59,1.69-2.64,3.33-6.72,5.15-9.01,1.51-1.91,5.1-1.81,5.36.91.13,1.43-5.08,9.29-6.04,11.37-8.63,18.69,7.13,13.98,19.36,14.66,2.6,1,2.11,5.02-.68,5.45-4.29.66-10.52-.27-15.11,0-19.17,1.16-27.82,22.56-36.35,36.61-2.2,2.17-5.82.7-4.81-2.42,3.26-7.51,14.76-21.32,13.67-29.48-.88-6.64-10.98-4.15-15.47-4.69-3.68-.44-3.37-5.02-.7-5.51,2.84-.52,7.43.24,10.56,0,5.5-.44,11.97-3.71,16.11-7.29Z"/>
+                </svg>
+                Email
+              </a>
+              <button className="btn-pill btn-ghost" onClick={() => setView("home")}>
+                Go Back
+              </button>
+            </div>
           )}
 
           {view === "gate" && (
