@@ -71,7 +71,7 @@ export default function Home() {
       <div className="site-wrapper">
         {/* ── Video Background ── */}
         <div className="video-bg">
-          <video autoPlay muted loop playsInline className="video-el" ref={(el) => { if (el) { view === "pricing" ? el.pause() : el.play(); } }}>
+          <video autoPlay muted loop playsInline className="video-el">
             <source src="/lakebackground.mp4" type="video/mp4" />
           </video>
           <div className="color-overlay" />
