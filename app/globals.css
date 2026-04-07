@@ -536,32 +536,4 @@ html, body {
   color: rgba(255,255,255,1);
 }
 
-/* ─── Tawk Live Chat Button ── */
-.btn-tawk {
-  position: fixed;
-  bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 150px;
-  height: 42px;
-  background: #25D366;
-  border: none;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  color: white;
-  letter-spacing: -0.02em;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-tawk:hover {
-  transform: translateX(-50%) scale(1.03);
-  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.7);
-}
 
