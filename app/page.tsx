@@ -71,7 +71,7 @@ export default function Home() {
         {/* ── Video Background ── */}
         <div className="video-bg">
           <video autoPlay muted loop playsInline className="video-el">
-            <source src="/bg-video.mp4" type="video/mp4" />
+            <source src="/lakebackground.mp4" type="video/mp4" />
           </video>
           <div className="color-overlay" />
           <div className="noise" />
