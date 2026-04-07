@@ -193,11 +193,11 @@ export default function Home() {
                   SLU-PP-332 is an experimental &quot;exercise mimetic&quot; drug that boosts metabolism, reduces fat, and increases mitochondrial function without physical activity.
                 </div>
                 <div className="test-divider" />
-              </div>
-              <div className="test-back">
-                <button className="btn-pill btn-ghost" onClick={() => setView("home")}>
-                  Go Back
-                </button>
+                <div className="test-back">
+                  <button className="btn-pill btn-ghost" onClick={() => setView("home")}>
+                    Go Back
+                  </button>
+                </div>
               </div>
             </div>
           )}
