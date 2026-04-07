@@ -280,17 +280,7 @@ export default function Home() {
 
       {/* ── WhatsApp Float Button ── */}
 
-      {/* ── Live Chat Float Button ── */}
-      {view === "contact" && (
-        <button
-          className="btn-tawk"
-          onClick={() => (window as any).Tawk_API?.toggle()}
-        >
-          💬 Live Chat
-        </button>
-      )}
-
-      {/* ── Post-Purchase Support Modal ── */}
+{/* ── Post-Purchase Support Modal ── */}
       {supportOpen && (
         <div className="modal-backdrop" onClick={() => setSupportOpen(false)}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
