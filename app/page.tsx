@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 const MEMBER_PASSWORD = "levelup";
 
-type View = "home" | "gate" | "unlocking" | "member" | "contact";
+type View = "home" | "gate" | "unlocking" | "member" | "contact" | "prints" | "product";
 
 
 export default function Home() {
@@ -19,6 +19,48 @@ export default function Home() {
     }
   }, []);
   const [dosageOpen, setDosageOpen] = useState(false);
+  const [activeImg, setActiveImg] = useState(0);
+
+  const [selectedProduct, setSelectedProduct] = useState(0);
+
+  const products = [
+    {
+      name: "American Craftsman Bungalow Birdhouse",
+      images: ["/birdhouse1.jpg", "/birdhouse2.jpg"],
+      price: "$65",
+      description: "Weather and UV protected\nAvailable in any color and size\nStandard size 13\" tall x 5.5\" wide x 7\" deep",
+    },
+    {
+      name: "Ninja Creami Coozie",
+      images: ["/coozie1.jpg", "/coozie2.jpg"],
+      price: "$15",
+      description: "Available in all Creami models/sizes and any color.",
+    },
+    {
+      name: "Mini Travel Kit",
+      images: ["/minitravel1.jpg", "/minitravel2.jpg", "/minitravel3.jpg"],
+      price: "$15",
+      description: "Holds up to 2 3ml vials\nHolds alcohol prep pads\nCan store several syringes",
+    },
+    {
+      name: "Drippy Bucket Organizer",
+      images: ["/drippybucket1.jpg", "/drippybucket2.jpg"],
+      price: "$15",
+      description: "Available in multiple sizes and colors.",
+    },
+    {
+      name: "Travel Kit",
+      images: ["/travelkit1.jpg", "/travelkit2.jpg", "/travelkit3.jpg"],
+      price: "$20",
+      description: "Holds 6 3ml vials\n1 30ml water\nAlcohol prep pads and syringes\nAvailable in any color.",
+    },
+    {
+      name: "Brick Skeleton",
+      images: ["/skeleton1.jpg", "/skeleton2.jpg"],
+      price: "$60",
+      description: "16\" tall, available in white and glow in the dark.\nCustom sizes available.",
+    },
+  ];
 
   const pdfUrl = "/menuinfoapril7.pdf";
 
@@ -105,6 +147,12 @@ export default function Home() {
 
                 <button
                   className="btn-pill btn-outline"
+                  onClick={() => setView("prints")}
+                >
+                  3D Prints
+                </button>
+                <button
+                  className="btn-pill btn-outline"
                   onClick={() => setView("contact")}
                 >
                   Contact
@@ -158,6 +206,43 @@ export default function Home() {
             </div>
           )}
 
+
+          {view === "prints" && (
+            <div className="prints-page">
+              <h2 className="prints-title">3D Prints - <span className="prints-contact-link" onClick={() => setView("contact")}>Contact</span> for Purchase</h2>
+              <div className="prints-grid">
+                {products.map((p, i) => (
+                  <button key={i} className="product-card" onClick={() => { setSelectedProduct(i); setActiveImg(0); setView("product"); }}>
+                    <Image src={p.images[0]} alt={p.name} width={400} height={400} className="product-thumb" />
+                    <span className="product-name">{p.name}</span>
+                    <span className="product-price">{p.price}</span>
+                  </button>
+                ))}
+              </div>
+              <button className="btn-pill btn-ghost" onClick={() => setView("home")}>Go Back</button>
+            </div>
+          )}
+
+          {view === "product" && (
+            <div className="product-page">
+              <div className="product-gallery">
+                <Image src={products[selectedProduct].images[activeImg]} alt={products[selectedProduct].name} width={600} height={600} className="product-main-img" />
+                <div className="product-thumbs">
+                  {products[selectedProduct].images.map((img, i) => (
+                    <button key={i} className={`thumb-btn${activeImg === i ? " thumb-active" : ""}`} onClick={() => setActiveImg(i)}>
+                      <Image src={img} alt="" width={80} height={80} className="thumb-img" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="product-info">
+                <h2 className="product-detail-name">{products[selectedProduct].name}</h2>
+                <span className="product-detail-price">{products[selectedProduct].price}</span>
+                <p className="product-desc" style={{whiteSpace: "pre-line"}}>{products[selectedProduct].description}</p>
+                <button className="btn-pill btn-ghost" onClick={() => setView("prints")}>Go Back</button>
+              </div>
+            </div>
+          )}
 
           {view === "gate" && (
             <form className="member-gate" onSubmit={handlePasswordSubmit}>
