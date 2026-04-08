@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 const MEMBER_PASSWORD = "levelup";
 
-type View = "home" | "gate" | "unlocking" | "member" | "contact" | "test";
+type View = "home" | "gate" | "unlocking" | "member" | "contact";
 
 
 export default function Home() {
@@ -20,8 +20,7 @@ export default function Home() {
   }, []);
   const [dosageOpen, setDosageOpen] = useState(false);
 
-  const pdfUrl =
-    "https://bodk0yq9zjh9vdxs.public.blob.vercel-storage.com/Superclear-Menu.pdf";
+  const pdfUrl = "/menuinfoapril7.pdf";
 
   const supportUrl =
     "https://bodk0yq9zjh9vdxs.public.blob.vercel-storage.com/Superclear%20-%20Post%20Purchase%20Support.pdf";
@@ -29,11 +28,7 @@ export default function Home() {
   const [supportOpen, setSupportOpen] = useState(false);
 
   const openPdf = () => {
-    if (window.innerWidth < 600) {
-      window.open(pdfUrl, "_blank");
-    } else {
-      setPdfOpen(true);
-    }
+    window.open(pdfUrl, "_blank");
   };
 
   const openSupport = () => {
@@ -114,12 +109,6 @@ export default function Home() {
                 >
                   Contact
                 </button>
-                <button
-                  className="btn-pill btn-outline"
-                  onClick={() => setView("test")}
-                >
-                  Test
-                </button>
               </div>
               <p className="subheader">Research for human optimization.</p>
               <p className="legal-text">
@@ -169,38 +158,6 @@ export default function Home() {
             </div>
           )}
 
-          {view === "test" && (
-            <div className="test-page">
-              <div className="test-page-4">
-                <h1 className="test-heading">Potential Benefits of Peptide Therapy</h1>
-                <p className="test-subtitle">Different peptides influence different biological systems, which is why they are often grouped by their primary benefits or use cases.</p>
-                <div className="test-col-left" style={{gridRow: 2}}>
-                  Weight Management &nbsp;GLP-1 provides appetite suppression, increased satiety, improved insulin sensitivity and blood sugar control. Examples include Semaglutide, Tirzepatide and Retatrutide.<br/><br/>
-                  Healing &amp; Injury Repair &nbsp;BPC-157 (Body Protection Compound 157) accelerates tendon, ligament, and muscle repair by creating new blood vessels. It is also highly effective for gut health, sealing the intestinal lining and reducing GI inflammation. It is frequently used by athletes and active individuals to recover from strenuous training or injuries.<br/><br/>
-                  TB-500 (Thymosin Beta-4) is all about mobility and systemic recovery. It helps cells travel to injured areas to lower inflammation and prevent the formation of stiff, painful scar tissue. It&apos;s great for improving flexibility and joint health.<br/><br/>
-                  Skin Health &amp; Anti-Aging &nbsp;GHK-CU is the ultimate anti-aging copper peptide for your appearance. It tells your skin to produce more collagen and elastin, which leads to firmer skin, fewer wrinkles, faster healing and supports hair growth.<br/><br/>
-                  Melanotan I (MT-1) stimulates melanin production in the skin, helping promote a darker natural tan and potentially increasing resistance to UV exposure.<br/><br/>
-                  Melanotan II (MT-2) is more potent at lower doses than MT-1, producing faster and deeper tanning. MT-2 has more potential side effects such as nausea, facial flushing and increased libido.<br/><br/>
-                  Epitalon (or Epithalon) is known for its potential anti-aging and longevity-promoting effects. It primarily works by stimulating telomerase production to increase telomere length, which protects chromosomes and slows cellular aging.
-                </div>
-                <div className="test-col-right" style={{gridRow: 2}}>
-                  Muscle Growth and Recovery &nbsp;Tesamorelin is a powerful tool for body composition. It signals the body to release growth hormone, which is highly effective at burning deep belly fat. It also helps with muscle tone, skin quality, and mental sharpness.<br/><br/>
-                  Semorelin stimulates the pituitary gland to produce and release natural human growth hormone (hGH), treating growth hormone deficiency and promoting anti-aging effects.<br/><br/>
-                  Ipamorelin + CJC-1295 this duo works together to trigger a natural, sustained release of growth hormone. It&apos;s perfect for better sleep, faster muscle recovery, and fat loss.<br/><br/>
-                  Energy, Endurance &amp; Metabolic Health &nbsp;MOTS-C acts as a systemic metabolic regulator. Mimics the metabolic effects of exercise by increasing insulin sensitivity, reversing metabolic decline, and improving athletic performance.<br/><br/>
-                  SS-31 (Elamipretide) acts as a reset button for your mitochondria. By reducing stress inside the cells, it restores your natural energy levels, clears brain fog, and supports the health of vital organs like your heart and kidneys.<br/><br/>
-                  AOD-9604 is a synthetic fragment of human growth hormone designed to stimulate fat breakdown and inhibit fat storage without causing the side effects of full-length growth hormone.<br/><br/>
-                  SLU-PP-332 is an experimental &quot;exercise mimetic&quot; drug that boosts metabolism, reduces fat, and increases mitochondrial function without physical activity.
-                </div>
-                <div className="test-divider" />
-                <div className="test-back">
-                  <button className="btn-pill btn-ghost" onClick={() => setView("home")}>
-                    Go Back
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
 
           {view === "gate" && (
             <form className="member-gate" onSubmit={handlePasswordSubmit}>
