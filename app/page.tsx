@@ -127,7 +127,7 @@ export default function Home() {
             priority
           />
 
-          <div className="content-area">
+          <div className={`content-area${view === "prints" || view === "product" ? " content-area--full" : ""}`}>
 
           {view === "home" && (
             <>
@@ -224,9 +224,10 @@ export default function Home() {
           )}
 
           {view === "product" && (
+            <>
             <div className="product-page">
               <div className="product-gallery">
-                <Image src={products[selectedProduct].images[activeImg]} alt={products[selectedProduct].name} width={600} height={600} className="product-main-img" />
+                <Image src={products[selectedProduct].images[activeImg]} alt={products[selectedProduct].name} width={600} height={800} className="product-main-img" unoptimized />
                 <div className="product-thumbs">
                   {products[selectedProduct].images.map((img, i) => (
                     <button key={i} className={`thumb-btn${activeImg === i ? " thumb-active" : ""}`} onClick={() => setActiveImg(i)}>
@@ -239,9 +240,10 @@ export default function Home() {
                 <h2 className="product-detail-name">{products[selectedProduct].name}</h2>
                 <span className="product-detail-price">{products[selectedProduct].price}</span>
                 <p className="product-desc" style={{whiteSpace: "pre-line"}}>{products[selectedProduct].description}</p>
-                <button className="btn-pill btn-ghost" onClick={() => setView("prints")}>Go Back</button>
               </div>
             </div>
+            <button className="btn-pill btn-ghost product-go-back" onClick={() => setView("prints")}>Go Back</button>
+            </>
           )}
 
           {view === "gate" && (
