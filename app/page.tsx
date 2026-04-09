@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 const MEMBER_PASSWORD = "levelup";
 
-type View = "home" | "gate" | "unlocking" | "member" | "contact" | "prints" | "product";
+type View = "home" | "gate" | "unlocking" | "member" | "contact" | "prints" | "product" | "dosage-disclaimer" | "dosage";
 
 
 export default function Home() {
@@ -18,7 +18,6 @@ export default function Home() {
       setView("member");
     }
   }, []);
-  const [dosageOpen, setDosageOpen] = useState(false);
   const [activeImg, setActiveImg] = useState(0);
 
   const [selectedProduct, setSelectedProduct] = useState(0);
@@ -61,6 +60,45 @@ export default function Home() {
       description: "16\" tall, available in white and glow in the dark.\nCustom sizes available.",
     },
   ];
+
+  const dosageCategories = ["View All", "Weight Management", "Healing & Injury Repair", "Skin Health & Anti-Aging", "Muscle Growth & Recovery", "Energy, Endurance & Metabolic Health"];
+  const [dosageCategory, setDosageCategory] = useState("View All");
+  const [dosageIndex, setDosageIndex] = useState(0);
+  const [dosageNotice, setDosageNotice] = useState(false);
+
+  const protocols = [
+    {
+      name: "Retatrutide",
+      subtitle: "Triple agonist, most effective",
+      tags: ["GLP-1", "WEEKLY"],
+      category: "Weight Management",
+      overview: "A triple agonist targeting GLP-1, GIP and glucagon (hormone produced by the pancreas) receptors. It\u2019s increasing in popularity due to it being the most effective out of the three in clinical trials. It is not FDA approved and remains an investigational medication in late-stage Phase 3 clinical trials. Studies are expected to conclude around May 2026.",
+      benefits: "Provides increase calorie burning via thermogenesis and increase in metabolism which may help reduce side effects.",
+      dosage: ".5mg - 6mg in some cases up to 12mg",
+      frequency: "Once weekly",
+      timeOfDay: "Any time of day",
+      cycleLength: "12+ weeks",
+      protocol: [
+        { week: "Week 1", dose: "1mg" },
+        { week: "Week 2", dose: "1mg" },
+        { week: "Week 3", dose: "1mg" },
+        { week: "Week 4", dose: "1.5mg" },
+        { week: "Week 5", dose: "2mg" },
+        { week: "Week 6", dose: "2mg" },
+        { week: "Week 7", dose: "2.5mg" },
+        { week: "Week 8", dose: "3mg" },
+        { week: "Week 9", dose: "3mg" },
+        { week: "Week 10", dose: "4mg" },
+        { week: "Week 11", dose: "4mg" },
+        { week: "Week 12", dose: "4mg" },
+        { week: "Week 13+", dose: "Varies" },
+      ],
+      bestPractices: "Begin at 1mg and titrate slowly. Maintain adequate protein intake throughout cycle. Monitor blood glucose if diabetic history present.",
+      keyNotes: "Not approved for human therapeutic use. Research compound only. Individual response varies significantly. Nausea is commonly reported at higher doses.",
+    },
+  ];
+
+  const filteredProtocols = dosageCategory === "View All" ? protocols : protocols.filter(p => p.category === dosageCategory);
 
   const pdfUrl = "/menuinfoapril7.pdf";
 
@@ -127,7 +165,7 @@ export default function Home() {
             priority
           />
 
-          <div className={`content-area${view === "prints" || view === "product" ? " content-area--full" : ""}`}>
+          <div className={`content-area${view === "prints" || view === "product" || view === "dosage" ? " content-area--full" : ""}`}>
 
           {view === "home" && (
             <>
@@ -288,7 +326,7 @@ export default function Home() {
             </div>
           )}
 
-          {view === "member" && !dosageOpen && (
+          {view === "member" && (
             <div className="buttons">
               <a
                 href="https://square.link/u/Bxnpw1ws"
@@ -312,7 +350,7 @@ export default function Home() {
               </button>
               <button
                 className="btn-pill btn-outline btn-enter"
-                onClick={() => setDosageOpen(true)}
+                onClick={() => { setDosageIndex(0); setDosageCategory("View All"); setView("dosage"); }}
               >
                 <svg className="enter-icon" viewBox="0 0 63.19 71.34" xmlns="http://www.w3.org/2000/svg" fill="white">
                   <path d="M28.7,20.91c3.11-2.69,6.73-7.1,8.97-10.59,1.69-2.64,3.33-6.72,5.15-9.01,1.51-1.91,5.1-1.81,5.36.91.13,1.43-5.08,9.29-6.04,11.37-8.63,18.69,7.13,13.98,19.36,14.66,2.6,1,2.11,5.02-.68,5.45-4.29.66-10.52-.27-15.11,0-19.17,1.16-27.82,22.56-36.35,36.61-2.2,2.17-5.82.7-4.81-2.42,3.26-7.51,14.76-21.32,13.67-29.48-.88-6.64-10.98-4.15-15.47-4.69-3.68-.44-3.37-5.02-.7-5.51,2.84-.52,7.43.24,10.56,0,5.5-.44,11.97-3.71,16.11-7.29Z"/>
@@ -328,19 +366,8 @@ export default function Home() {
             </div>
           )}
 
-          {view === "member" && dosageOpen && (
-            <div className="coming-card">
-              <p className="coming-soon">Coming Soon</p>
-              <p className="coming-sub">
-                Protocols are being compiled and will be accessible soon.
-              </p>
-              <button className="coming-close" onClick={() => setDosageOpen(false)}>
-                Close
-              </button>
-            </div>
-          )}
-
           </div>
+
         </main>
       </div>
 
@@ -381,6 +408,104 @@ export default function Home() {
               title="Post-Purchase Support"
             />
           </div>
+        </div>
+      )}
+
+      {/* ── Dosage Page ── */}
+      {view === "dosage" && (
+        <div className="dosage-page">
+          <div className="dosage-header">
+            <button className="dosage-back" onClick={() => setView("member")}>&#8249; Back</button>
+            <span className="dosage-header-title">Dosage: Common Protocols</span>
+            <span className="dosage-counter">{String(dosageIndex + 1).padStart(2, "0")} / {String(filteredProtocols.length).padStart(2, "0")}</span>
+          </div>
+          <div className="dosage-categories">
+            {dosageCategories.map(cat => (
+              <button key={cat} className={`dosage-cat-btn${dosageCategory === cat ? " dosage-cat-active" : ""}`} onClick={() => { setDosageCategory(cat); setDosageIndex(0); }}>
+                {cat}
+              </button>
+            ))}
+          </div>
+          {filteredProtocols.length > 0 ? (
+            <div className="dosage-card-area">
+              <div className="dosage-card">
+                <div className="dosage-card-scroll">
+                  <h2 className="dosage-card-name">{filteredProtocols[dosageIndex].name}</h2>
+                  <p className="dosage-card-subtitle">{filteredProtocols[dosageIndex].subtitle}</p>
+                  <div className="dosage-tags">
+                    {filteredProtocols[dosageIndex].tags.map(tag => (
+                      <span key={tag} className="dosage-tag">{tag}</span>
+                    ))}
+                  </div>
+                  <div className="dosage-section">
+                    <span className="dosage-section-label">OVERVIEW</span>
+                    <p className="dosage-section-text">{filteredProtocols[dosageIndex].overview}</p>
+                  </div>
+                  <div className="dosage-section">
+                    <span className="dosage-section-label">RESEARCHED BENEFITS</span>
+                    <p className="dosage-section-text">{filteredProtocols[dosageIndex].benefits}</p>
+                  </div>
+                  <div className="dosage-row">
+                    <span className="dosage-section-label">COMMON DOSAGE</span>
+                    <span className="dosage-row-value">{filteredProtocols[dosageIndex].dosage}</span>
+                  </div>
+                  <div className="dosage-row">
+                    <span className="dosage-section-label">FREQUENCY</span>
+                    <span className="dosage-row-value">{filteredProtocols[dosageIndex].frequency}</span>
+                  </div>
+                  <div className="dosage-row">
+                    <span className="dosage-section-label">TIME OF DAY</span>
+                    <span className="dosage-row-value">{filteredProtocols[dosageIndex].timeOfDay}</span>
+                  </div>
+                  <div className="dosage-row">
+                    <span className="dosage-section-label">CYCLE LENGTH</span>
+                    <span className="dosage-row-value">{filteredProtocols[dosageIndex].cycleLength}</span>
+                  </div>
+                  <div className="dosage-section">
+                    <span className="dosage-section-label">DOSAGE PROTOCOL</span>
+                    <div className="dosage-table">
+                      {filteredProtocols[dosageIndex].protocol.map((row, i) => (
+                        <div key={i} className="dosage-table-row">
+                          <span className="dosage-table-week">{row.week}</span>
+                          <span className="dosage-table-dose">{row.dose}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="dosage-section">
+                    <span className="dosage-section-label">BEST PRACTICES</span>
+                    <p className="dosage-section-text">{filteredProtocols[dosageIndex].bestPractices}</p>
+                  </div>
+                  <div className="dosage-section">
+                    <span className="dosage-section-label">KEY NOTES</span>
+                    <p className="dosage-section-text">{filteredProtocols[dosageIndex].keyNotes}</p>
+                  </div>
+                  <div className="dosage-scroll-hint">&#8964;</div>
+                </div>
+              </div>
+              {filteredProtocols.length > 1 && (
+                <button className="dosage-next" onClick={() => setDosageIndex((dosageIndex + 1) % filteredProtocols.length)}>&#8250;</button>
+              )}
+            </div>
+          ) : (
+            <p className="dosage-empty">No protocols in this category yet.</p>
+          )}
+          <div className="dosage-footer">
+            <button className="dosage-notice-btn" onClick={() => setDosageNotice(true)}>IMPORTANT NOTICE</button>
+          </div>
+
+          {/* ── Important Notice Overlay ── */}
+          {dosageNotice && (
+            <div className="dosage-disclaimer" onClick={() => setDosageNotice(false)}>
+              <h2 className="disclaimer-title">For research use only.</h2>
+              <p className="disclaimer-text">
+                Products are not approved by the FDA and are not intended to diagnose, treat, cure, or prevent any disease. We encourage you to do your own research. Consult a licensed medical professional before use.
+              </p>
+              <button className="btn-pill disclaimer-btn" onClick={() => setDosageNotice(false)}>
+                I Understand
+              </button>
+            </div>
+          )}
         </div>
       )}
     </>

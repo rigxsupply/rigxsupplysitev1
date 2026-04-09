@@ -616,6 +616,7 @@ html, body {
   color: #fff;
   text-align: center;
   letter-spacing: -0.02em;
+  flex: 1;
 }
 
 .product-price {
@@ -724,4 +725,325 @@ html, body {
   .product-page {
     flex-direction: column;
   }
+}
+
+/* ── Dosage Disclaimer Overlay ── */
+.dosage-disclaimer {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  gap: 20px;
+  animation: fadeIn 0.4s ease;
+}
+
+.disclaimer-title {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  color: #fff;
+  text-align: center;
+}
+
+.disclaimer-text {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(12px, 2vw, 15px);
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  max-width: 380px;
+  line-height: 1.5;
+}
+
+.disclaimer-btn {
+  margin-top: 12px;
+  max-width: 280px;
+}
+
+/* ── Dosage Page ── */
+.dosage-page {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.3s ease;
+  overflow: hidden;
+}
+
+.dosage-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  flex-shrink: 0;
+}
+
+.dosage-back {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.6);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.2s;
+}
+
+.dosage-back:hover {
+  color: #fff;
+}
+
+.dosage-header-title {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(14px, 2.5vw, 17px);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.03em;
+}
+
+.dosage-counter {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: -0.02em;
+}
+
+.dosage-categories {
+  display: flex;
+  gap: 8px;
+  padding: 0 20px 16px;
+  overflow-x: auto;
+  flex-shrink: 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.dosage-categories::-webkit-scrollbar {
+  display: none;
+}
+
+.dosage-cat-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.dosage-cat-btn:hover {
+  border-color: rgba(255,255,255,0.5);
+  color: #fff;
+}
+
+.dosage-cat-active {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.6);
+  color: #fff;
+}
+
+.dosage-card-area {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 20px 20px;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.dosage-card {
+  width: 100%;
+  max-width: 420px;
+  max-height: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  animation: scaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  overflow: hidden;
+}
+
+.dosage-card-scroll {
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dosage-card-name {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: -0.04em;
+}
+
+.dosage-card-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(13px, 2vw, 15px);
+  color: rgba(255,255,255,0.5);
+  margin-top: -8px;
+}
+
+.dosage-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dosage-tag {
+  padding: 6px 14px;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
+.dosage-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dosage-section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+.dosage-section-text {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(13px, 2vw, 15px);
+  color: rgba(255,255,255,0.8);
+  line-height: 1.55;
+}
+
+.dosage-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.dosage-row-value {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(13px, 2vw, 15px);
+  color: rgba(255,255,255,0.8);
+}
+
+.dosage-table {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.04);
+}
+
+.dosage-table-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.dosage-table-row:last-child {
+  border-bottom: none;
+}
+
+.dosage-table-week {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+
+.dosage-table-dose {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+  font-weight: 500;
+}
+
+.dosage-scroll-hint {
+  text-align: center;
+  font-size: 24px;
+  color: rgba(255,255,255,0.3);
+  padding: 4px 0;
+}
+
+.dosage-next {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.6);
+  font-size: 24px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  align-self: center;
+}
+
+.dosage-next:hover {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+.dosage-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 20px;
+  flex-shrink: 0;
+}
+
+.dosage-notice-btn {
+  background: none;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.dosage-notice-btn:hover {
+  color: rgba(255,255,255,0.7);
+}
+
+.dosage-empty {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  padding: 40px;
 }
