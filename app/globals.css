@@ -114,6 +114,8 @@ html, body {
 .content-area--full {
   height: auto;
   flex: 1;
+  padding-top: 0;
+  margin-top: -16px;
 }
 
 .main:has(.content-area--full) {
@@ -566,6 +568,17 @@ html, body {
   font-size: clamp(20px, 3vw, 36px);
   color: #fff;
   letter-spacing: -0.04em;
+  margin-bottom: -16px;
+}
+
+.prints-under-construction {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .prints-contact-link {
@@ -632,6 +645,7 @@ html, body {
   display: flex;
   gap: 32px;
   padding: 20px;
+  padding-top: 72px;
   width: 100%;
   max-width: 900px;
   align-items: flex-start;
@@ -708,7 +722,7 @@ html, body {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: clamp(13px, 1.4vw, 18px);
-  color: rgba(255,255,255,0.8);
+  color: #fff;
   line-height: 1.5;
 }
 

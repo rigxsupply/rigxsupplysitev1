@@ -209,13 +209,13 @@ export default function Home() {
 
           {view === "prints" && (
             <div className="prints-page">
-              <h2 className="prints-title">3D Prints - <span className="prints-contact-link" onClick={() => setView("contact")}>Contact</span> for Purchase</h2>
+              <h2 className="prints-title"><span className="prints-contact-link" onClick={() => setView("contact")}>Contact</span> for Purchase</h2>
+              <p className="prints-under-construction">🚧🚧 Under Construction 🚧🚧</p>
               <div className="prints-grid">
                 {products.map((p, i) => (
                   <button key={i} className="product-card" onClick={() => { setSelectedProduct(i); setActiveImg(0); setView("product"); }}>
                     <Image src={p.images[0]} alt={p.name} width={400} height={400} className="product-thumb" />
                     <span className="product-name">{p.name}</span>
-                    <span className="product-price">{p.price}</span>
                   </button>
                 ))}
               </div>
@@ -238,7 +238,6 @@ export default function Home() {
               </div>
               <div className="product-info">
                 <h2 className="product-detail-name">{products[selectedProduct].name}</h2>
-                <span className="product-detail-price">{products[selectedProduct].price}</span>
                 <p className="product-desc" style={{whiteSpace: "pre-line"}}>{products[selectedProduct].description}</p>
               </div>
             </div>
