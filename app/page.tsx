@@ -62,7 +62,7 @@ export default function Home() {
     },
   ];
 
-  const pdfUrl = "/menuinfoapril7.pdf";
+  const pdfUrl = "/menuapril11.pdf";
 
   const supportUrl =
     "https://bodk0yq9zjh9vdxs.public.blob.vercel-storage.com/Superclear%20-%20Post%20Purchase%20Support.pdf";
