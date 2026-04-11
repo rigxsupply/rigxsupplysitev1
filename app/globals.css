@@ -739,3 +739,17 @@ html, body {
     flex-direction: column;
   }
 }
+
+.menu-images {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.menu-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

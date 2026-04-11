@@ -5,12 +5,11 @@ import { useState, useEffect } from "react";
 
 const MEMBER_PASSWORD = "levelup";
 
-type View = "home" | "gate" | "unlocking" | "member" | "contact" | "prints" | "product";
+type View = "home" | "gate" | "unlocking" | "member" | "contact" | "prints" | "product" | "menu";
 
 
 export default function Home() {
   const [view, setView] = useState<View>("home");
-  const [pdfOpen, setPdfOpen] = useState(false);
   const [passwordInput, setPasswordInput] = useState("");
   const [passwordError, setPasswordError] = useState(false);
   useEffect(() => {
@@ -62,16 +61,10 @@ export default function Home() {
     },
   ];
 
-  const pdfUrl = "/menuapril11.pdf";
-
   const supportUrl =
     "https://bodk0yq9zjh9vdxs.public.blob.vercel-storage.com/Superclear%20-%20Post%20Purchase%20Support.pdf";
 
   const [supportOpen, setSupportOpen] = useState(false);
-
-  const openPdf = () => {
-    window.open(pdfUrl, "_blank");
-  };
 
   const openSupport = () => {
     if (window.innerWidth < 600) {
@@ -127,12 +120,12 @@ export default function Home() {
             priority
           />
 
-          <div className={`content-area${view === "prints" || view === "product" ? " content-area--full" : ""}`}>
+          <div className={`content-area${view === "prints" || view === "product" || view === "menu" ? " content-area--full" : ""}`}>
 
           {view === "home" && (
             <>
               <div className="buttons">
-                <button className="btn-pill" onClick={openPdf}>
+                <button className="btn-pill" onClick={() => setView("menu")}>
                   Menu &amp; Info
                 </button>
                 <button
@@ -206,6 +199,19 @@ export default function Home() {
             </div>
           )}
 
+
+          {view === "menu" && (
+            <div className="prints-page">
+              <div className="menu-images">
+                {["/menu1.png", "/menu2.png", "/menu3.png", "/menu4.png"].map((src, i) => (
+                  <Image key={i} src={src} alt={`Menu page ${i + 1}`} width={1000} height={1373} className="menu-img" />
+                ))}
+              </div>
+              <button className="btn-pill btn-ghost" onClick={() => setView("home")}>
+                Go Back
+              </button>
+            </div>
+          )}
 
           {view === "prints" && (
             <div className="prints-page">
@@ -343,24 +349,7 @@ export default function Home() {
         </main>
       </div>
 
-      {/* ── PDF Modal ── */}
-      {pdfOpen && (
-        <div className="modal-backdrop" onClick={() => setPdfOpen(false)}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <span className="modal-title">Menu &amp; Info</span>
-              <button className="modal-close" onClick={() => setPdfOpen(false)}>
-                ✕
-              </button>
-            </div>
-            <iframe
-              src={pdfUrl}
-              className="modal-iframe"
-              title="For Research Use Only"
-            />
-          </div>
-        </div>
-      )}
+      {/* ── PDF Modal removed, now using menu view ── */}
 
       {/* ── WhatsApp Float Button ── */}
 
