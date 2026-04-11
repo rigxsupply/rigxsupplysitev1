@@ -138,12 +138,14 @@ export default function Home() {
                   Member Access
                 </button>
 
+                {/* 3D Prints button hidden for now
                 <button
                   className="btn-pill btn-outline"
                   onClick={() => setView("prints")}
                 >
                   3D Prints
                 </button>
+                */}
                 <button
                   className="btn-pill btn-outline"
                   onClick={() => setView("contact")}
