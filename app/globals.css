@@ -551,6 +551,21 @@ html, body {
   color: rgba(255,255,255,1);
 }
 
+.typewriter-cursor {
+  font-size: 0.85em;
+  color: rgba(255,255,255,0.9);
+  animation: none;
+}
+
+.typewriter-cursor.blink {
+  animation: cursorBlink 1s step-end infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 /* ── 3D Prints Store ── */
 .prints-page {
   display: flex;
